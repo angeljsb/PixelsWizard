@@ -8,7 +8,6 @@ package codes.angeljsb.pixelswizard;
 import codes.angeljsb.capsulator.BaseFile;
 import codes.angeljsb.capsulator.Directory;
 import codes.angeljsb.capsulator.image.ImageFile;
-import codes.angeljsb.capsulator.image.ImageLoader;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -129,18 +128,6 @@ public class Converter {
             image.read();
             String name = image.getBaseFile().getName();
             
-            if(width > 0 || height > 0) {
-                System.out.println("Resizing " + name + " ...");
-                image.resize(width, height);
-                System.out.println(name + " successfully resized");
-            }
-            
-            if(rotate > 0 && rotate < 360) {
-                System.out.println("Rotating " + name + " ...");
-                image.rotate(rotate);
-                System.out.println(name + " successfully rotated");
-            }
-            
             if(!imageType.isEmpty()) {
                 int type = image.get().getType();
                 switch (imageType) {
@@ -173,6 +160,18 @@ public class Converter {
                     image.setContent(next);
                     System.out.println("Type successfully changed");
                 }
+            }
+            
+            if(width > 0 || height > 0) {
+                System.out.println("Resizing " + name + " ...");
+                image.resize(width, height);
+                System.out.println(name + " successfully resized");
+            }
+            
+            if(rotate > 0 && rotate < 360) {
+                System.out.println("Rotating " + name + " ...");
+                image.rotate(rotate);
+                System.out.println(name + " successfully rotated");
             }
             
             if(replace) {
